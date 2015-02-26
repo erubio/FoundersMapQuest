@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+	<head>
+		<title>Founders Map</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="Founders Map quest" />
+
+		<link rel="stylesheet" href="/styles/main.css">
+	</head>
+
+
+	<body>
+		<!-- HEADER -->
+		<header class="main-header">
+			<h1>Founders Map</h1>
+		</header>
+		<!-- END HEADER -->
+
+		<!--START MAIN-->
+		<div id="main" class="twelve columns offset-by-one">
+			{+ mainContent /}
+		</div>
+		<!--END MAIN-->
+
+		
+		<!-- FOOTER -->
+		<footer>
+			<ul>
+				<li><a herf="#">About</a></li>
+				<li><a herf="#">Who am I?</a></li>
+				<li><a herf="#">Liscense</a></li>
+			</ul>
+		</footer>
+		<!-- END FOOTER -->
+
+		<script>
+			window.FoundersMap = {
+				appContext: {
+					version: '0.1.0'
+				}
+			};
+		</script>
+
+		<script data-main="/js/main.js" src="/vendor/requirejs/require.js"></script>
+
+	</body>
+</html>

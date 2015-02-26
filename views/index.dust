@@ -1,0 +1,46 @@
+{> layout /}
+
+{< mainContent}
+	<section class="map-container">
+			<div id="map"></div>
+		</section>
+
+		
+
+		<section class="table-container">
+			<table class="rounded-corner-table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Company Name</th>
+						<th>Founder</th>
+						<th>City</th>
+						<th>Country</th>
+						<th>Postal Code</th>
+						<th>Street</th>
+						<th>Photo</th>
+						<th>Home Page</th>
+						<th>Garage Latitude</th>
+						<th>Garage Longitude</th>
+					<tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td colspan="11" class="no-results">
+							There is no data to show, be the first adding your project! Click here to add it!
+						</td>
+					</tr>
+				</tfoot>
+				<tbody>
+				</tbody>
+			</table>
+		</section>
+
+		<section class="input-container" >
+			<form>
+				<textarea name="csv">
+				</textarea>
+				<button type="submit" >Send!</button>
+			</form>
+		</section>
+{/ mainContent}
