@@ -38,10 +38,18 @@
 				}
 			}
 		}
+
+		/**
+		* Function that clean all stored events
+		**/
+		function cleanAll() {
+			eventsMap = {}	
+		}
 		
 		return {
 			on: on,
-			trigger: trigger
+			trigger: trigger,
+			cleanAll: cleanAll
 		}
 
 	});

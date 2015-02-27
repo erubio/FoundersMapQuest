@@ -18,6 +18,7 @@ define(['jquery', 'modules/csv-manager','tests-utils', 'plugins/events-manager']
 		});
 		afterEach(function() {
 			testUtils.cleanSandBox();
+			eManager.cleanAll();
 		});
 
 
