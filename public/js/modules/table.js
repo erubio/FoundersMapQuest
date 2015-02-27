@@ -31,11 +31,21 @@
 		}
 
 		/**
+		* Function that show table
+		**/
+		function showTable() {
+			
+		}
+
+		/**
 		* Function that start listening events for the module
 		**/
 		function bindEvents() {
 			eManager.on('addedFounders', function(data) {
 				addDataToTable(data);
+			});
+			eManager.on('showTable', function() {
+				showTable();
 			});
 		}
 

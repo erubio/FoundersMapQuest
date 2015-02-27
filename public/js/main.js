@@ -11,7 +11,7 @@
 		}
 	});
 	// Main initialization
-	require(['modules/table', "modules/map", "modules/csv-manager"], function(tableModule, mapModule, csvManager) {
+	require(['modules/table', "modules/map", "modules/csv-manager", "modules/nav"], function(tableModule, mapModule, csvManager) {
 		console.log('App initialized');
 		for(var i=0,l=arguments.length; i<l; i++) {
 			arguments[i].init();

@@ -14,9 +14,25 @@
 		}
 
 		/**
+		* Function that show form
+		**/
+		function showForm() {
+		}
+
+		/**
+		* Function that start listening app events
+		**/
+		function bindEvents() {
+			eManager.on('showForm', function() {
+				showForm();
+			});
+		}
+
+		/**
 		* Function that configure csv form
 		**/
 		function configure() {
+			bindEvents();
 			var $body = $('body'),
 				isProcessing = false;
 			$body.delegate('#csvForm','submit', function(e) {
