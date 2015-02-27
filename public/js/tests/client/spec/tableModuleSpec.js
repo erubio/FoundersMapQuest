@@ -1,0 +1,54 @@
+define(['jquery', 'modules/table','tests-utils', 'plugins/events-manager'], function($, table, testUtils, eManager) {
+	'use strict';
+
+	
+	var obj = [{
+		id: '1',
+		companyName: 'companyName',
+		founder: 'founder',
+		city: 'city',
+		country: 'country',
+		postalCode: 'postalCode',
+		street: 'street',
+		photo: 'photo',
+		homePage: 'homePage',
+		garageLatitude: 'garageLatitude', 
+		garageLongitude: 'garageLongitude'
+	}];
+
+	var csvStr = 'Id,Company Name,Founder,City,Country,Postal Code, Street,Photo,Home Page,Garage Latitude,Garage Longitude\n';
+	csvStr += '1,Google,Larry Page & Sergey Brin,Mountain View,USA,CA 94043,1600 Amphitheatre Pkwy,http://interviewsummary.com/wp-content/uploads/2013/07/larry-page-and-sergey-brin-of-google-620x400.jpg,http://google.com,37.457674,-122.163452\n';
+	csvStr += '2,Apple,Steve Jobs & Steve Wozniak,Cupertino,USA,CA 95014,1 Infinite Loop,http://i.dailymail.co.uk/i/pix/2013/02/08/article-2275512-172E13BB000005DC-732_634x505.jpg,http://apple.com,37.3403188,-122.0581469\n';
+	csvStr += '3,Microsoft,Bill Gates,Redmond,USA,WA 98052-7329,One Microsoft Way,http://postdefiance.com/wp-content/uploads/2013/02/bill-gates-microsoft-young.jpg,http://microsoft.com,37.472189,-122.190191';
+
+
+	describe('Table', function() {
+
+		beforeEach(function(done) {
+			testUtils.loadFixture('table', function(){
+				table.init();
+				done();	
+			});
+			
+		});
+		afterEach(function() {
+			testUtils.cleanSandBox();
+		});
+
+
+		it('Should draw a row in table', function(done) {
+			eManager.on('addedFounders', function() {
+				setTimeout(function(){
+					var $tr = $('tbody tr');
+					expect($tr.length).toEqual(1);
+					expect($tr.find('td').length).toEqual(11);
+					done();
+				},200);
+	
+			});
+			eManager.trigger('addedFounders', obj);
+
+
+		});
+	});
+});
