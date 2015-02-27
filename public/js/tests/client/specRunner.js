@@ -10,7 +10,8 @@
       'boot': 'tests/client/lib/jasmine-2.2.0/boot',
       'jquery': '../vendor/jquery/dist/jquery',
       'handlebars': '../vendor/handlebars/handlebars',
-      'async': '../vendor/requirejs-plugins/src/async'
+      'async': '../vendor/requirejs-plugins/src/async',
+      'tests-utils': 'tests/client/util/util'
     },
     shim: {
       'jasmine': {
@@ -31,7 +32,10 @@
   var specs = [
     'tests/client/spec/eventsManagerSpec',
     'tests/client/spec/csvSpec',
-    'tests/client/spec/appContextSpec'
+    'tests/client/spec/appContextSpec',
+    'tests/client/spec/templatesSpec',
+    'tests/client/spec/csvModuleSpec',
+    'tests/client/spec/tableModuleSpec'
   ];
 
   // Load Jasmine - This will still create all of the normal Jasmine browser globals unless `boot.js` is re-written to use the
