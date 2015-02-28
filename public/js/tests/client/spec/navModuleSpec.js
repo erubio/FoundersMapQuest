@@ -26,7 +26,7 @@ define(['jquery', 'modules/nav','tests-utils', 'plugins/events-manager'], functi
 		});
 
 		it('Should trigger show table event when user clicks icon', function(done) {
-			eManager.on('showTable', function() {
+			eManager.on('showForm', function() {
 				expect(true).toEqual(true);
 				done();
 			});

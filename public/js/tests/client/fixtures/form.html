@@ -1,7 +1,19 @@
-<section class="input-container" >
-	<form id="csvForm" method="POST" action="/founder">
-		<textarea name="csv" id="data-input">
-		</textarea>
-		<button type="submit" >Send!</button>
+<section class="form-container" >
+	<header>
+		<h2>Add your project</h2>
+	</header>
+	<h4>Share your project in our system and be part of something big</h4>
+	<form id="csvForm" method="POST" action="/founder" class="csvForm">
+		<fieldset>
+			<label class="label" for="data-input">
+				<span>CSV: </span>
+				<textarea name="csv" id="data-input"></textarea>
+			</label>
+			<div class="tip tipHelp">Enter a valid CSV</div>
+			<div class="tip tipError">Should be a valid CSV</div>
+		</fieldset>
+		<fieldset>
+			<button class="button" type="submit" >Send!</button>
+		</fieldset>
 	</form>
 </section>

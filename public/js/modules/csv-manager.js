@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	define(['jquery', 'plugins/csv', 'plugins/events-manager'], function($, csvParser, eManager) {
+	define(['jquery', 'plugins/csv', 'plugins/events-manager', 'plugins/templates'], function($, csvParser, eManager, templates) {
 		
 		/**
 		* Function that fetch csv from form
@@ -17,6 +17,68 @@
 		* Function that show form
 		**/
 		function showForm() {
+			eManager.trigger('cleanManagementBox');
+			templates.render('csv-form', {}, function(html) {
+				var $boxContent = $('#management-box ._box-content');
+				$boxContent.append(html);
+			});
+			eManager.trigger('showManagementBox');
+		}
+
+		/**
+		* Function that show tip(animation)
+		**/
+		function showTip($tip) {
+			$tip.animate({
+				opacity: 1,
+			}, 500);
+		}
+		/**
+		* Function that hide tip (animation)
+		**/
+		function hideTip($tip) {
+			$tip.animate({
+				opacity: 0,
+			}, 500);
+		}
+
+		function initForm() {
+			var $body = $('body'),
+				isProcessing = false;
+			$body.delegate('#csvForm','submit', function(e) {
+				e.preventDefault();
+				if(isProcessing) {
+					return;
+				}
+				isProcessing = true;
+				var $target = $(e.target),
+					formQueryString = $target.serialize(),
+					csv = fetchCsv(formQueryString),
+					$tipError = $target.find('.tipError'),
+					foundersData;
+					hideTip($tipError);
+					if(csv) {
+						foundersData = csvParser.csv2Obj(csv);
+						$target.find('textarea').val('');
+						eManager.trigger('addedFounders', foundersData);
+					} else {
+						showTip($tipError);
+					}
+					isProcessing = false;
+					
+			});
+		}
+
+		function addDomEvents() {
+			var $mBox = $('#management-box'),
+				$tipHelp;
+			$mBox.delegate('textarea', 'focus', function() {
+				$tipHelp = $mBox.find('.tipHelp');
+				showTip($tipHelp);
+			});
+			$mBox.delegate('textarea', 'blur', function() {
+				hideTip($tipHelp);
+			});
 		}
 
 		/**
@@ -33,28 +95,8 @@
 		**/
 		function configure() {
 			bindEvents();
-			var $body = $('body'),
-				isProcessing = false;
-			$body.delegate('#csvForm','submit', function(e) {
-				e.preventDefault();
-				if(isProcessing) {
-					return;
-				}
-				isProcessing = true;
-				var $target = $(e.target),
-					formQueryString = $target.serialize(),
-					csv = fetchCsv(formQueryString),
-					foundersData;
-					if(csv) {
-						foundersData = csvParser.csv2Obj(csv);
-						$target.find('textarea').val('');
-						eManager.trigger('addedFounders', foundersData);
-					} else {
-						alert('Text area empty');
-					}
-					isProcessing = false;
-					
-			});
+			initForm();
+			addDomEvents();
 			console.log('csv module initialized!');
 
 		}

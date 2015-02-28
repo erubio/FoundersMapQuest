@@ -6,7 +6,7 @@ define(['plugins/templates'], function(templates) {
 		it('Should render a template', function(done) {
 			templates.render('csv-form', {}, function(tmpl){
 				console.log(tmpl);
-				expect(tmpl).toContain('<form id="csvForm" method="POST" action="/founder">');
+				expect(tmpl).toContain('<form id="csvForm" method="POST" action="/founder" class="csvForm">');
 				done();
 			});
 		});

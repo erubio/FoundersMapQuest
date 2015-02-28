@@ -2,25 +2,16 @@
 	'use strict';
 
 	define(['jquery','plugins/templates', 'plugins/events-manager', 'plugins/popup'], function($, templates, eManager, popup) {
-		var $table;
+		var $table, tableData = null;
 
 		/**
-		* Callback from template render, this function injects rows to tbody
-		* @param {String} html -> html to inject
+		* Function that add dom events to table
 		**/
-		function addRows(html) {
-			var $tbody = $table.find('tbody'),
-				$tfoot = $table.find('tfoot');
-			$tbody.append(html);
-			$tfoot.remove();
-		}
-
-		/**
-		* Function that render template to add rows to table
-		* @param {Object} data -> table data
-		**/
-		function addDataToTable(data) {
-			templates.render('table-content', {rows: data}, addRows);
+		function addDomEvents() {
+			var $mBox = $('#management-box');
+			$mBox.delegate('._addNew', 'click', function() {
+				eManager.trigger('showForm');		
+			});
 		}
 
 		/**
@@ -34,7 +25,16 @@
 		* Function that show table
 		**/
 		function showTable() {
-			
+			var tmplData = {
+				rows: tableData, 
+				showTfoot: tableData === null	
+			};
+			eManager.trigger('cleanManagementBox');
+			templates.render('table-content', tmplData, function(html) {
+				var $boxContent = $('#management-box ._box-content');
+				$boxContent.append(html);
+			});
+			eManager.trigger('showManagementBox');
 		}
 
 		/**
@@ -42,7 +42,11 @@
 		**/
 		function bindEvents() {
 			eManager.on('addedFounders', function(data) {
-				addDataToTable(data);
+				if(tableData) {
+					tableData = tableData.concat(data);	
+				} else {
+					tableData = data;
+				}
 			});
 			eManager.on('showTable', function() {
 				showTable();
@@ -57,6 +61,7 @@
 			$table = $('.rounded-corner-table');
 			bindEvents();
 			configureSortTable();
+			addDomEvents();
 			console.log('table module initialized!');
 		}
 

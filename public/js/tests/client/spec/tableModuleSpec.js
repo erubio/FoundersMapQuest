@@ -19,7 +19,7 @@ define(['jquery', 'modules/table','tests-utils', 'plugins/events-manager'], func
 	describe('Table', function() {
 
 		beforeEach(function(done) {
-			testUtils.loadFixture('table', function(){
+			testUtils.loadFixture('box', function(){
 				table.init();
 				done();	
 			});
@@ -30,9 +30,20 @@ define(['jquery', 'modules/table','tests-utils', 'plugins/events-manager'], func
 			testUtils.cleanSandBox();
 		});
 
+		it('Should draw a table on show table event', function(done) {
+			eManager.on('showTable', function() {
+				setTimeout(function(){
+					var $table = $('table');
+					expect($table.length).toEqual(1);
+					done();
+				},200);
+	
+			});
+			eManager.trigger('showTable');
+		});
 
 		it('Should draw a row in table', function(done) {
-			eManager.on('addedFounders', function() {
+			eManager.on('showTable', function() {
 				setTimeout(function(){
 					var $tr = $('tbody tr');
 					expect($tr.length).toEqual(1);
@@ -42,7 +53,10 @@ define(['jquery', 'modules/table','tests-utils', 'plugins/events-manager'], func
 	
 			});
 			eManager.trigger('addedFounders', obj);
-
+			setTimeout(function() {
+				eManager.trigger('showTable');
+			},10);
+			
 
 		});
 	});

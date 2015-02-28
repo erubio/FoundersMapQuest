@@ -33,6 +33,20 @@
 			});
 		}
 
+		/**
+		* Add handlebars helper for check if data is image
+		**/
+		HBS.registerHelper('checkImage', function(value) {
+			
+			if(value.match(/\.(jpg|png|jpeg|bmp|svg|tiff|gif)$/)) {
+				return new HBS.SafeString(
+					'<a href="#" class="_imgView"><img src="' + value + '" width="60px"></a>'
+				);
+			} else {
+				return value;
+			}
+		});
+
 		return {
 			render: render
 		}

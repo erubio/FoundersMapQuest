@@ -1,6 +1,7 @@
 /* Reset */
 body {
 	margin:0;
+	overflow: hidden;
 	padding:0;
 	font-size: 13px;
 	width:100%;
@@ -9,26 +10,178 @@ body {
 /* Header */
 .main-header {
 	color: #039;
-	margin: 0;
-	padding: 10px;
+	left: 80px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 100;
 }
 
-/* Footer */
-footer {
-	clear: both;
-	color: #a4a1a1;
-	height: 30px;
-	margin: 0;
-	padding: 20px 10px;
-	text-align: center;
-	color: #039;
-	margin: 0;
-	padding: 10px;
-}
-
-footer ul li{
-	display: inline;
-	margin: 0 15px 0 0;
-}
 /* Main content */
 
+/* Map */
+.map-container {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.map-container.collapsed {
+	height: 50%;
+}
+#map {
+	height: 100%;
+	margin: 0px;
+	width: 100%;
+}
+
+/* Nav */
+#nav-main {
+	position: fixed;
+	top: 0px;
+	right: 150px;
+	z-index: 100;
+}
+
+#nav-main ul li{
+	display: inline;
+	margin: 0 5px 0 0;
+}
+
+/* management box */
+.bottom-box {
+	background-color: white;
+	bottom: 0;
+	display: none;
+	height: 50%;
+	overflow: auto;
+	position: absolute;
+	width: 100%;
+	z-index: 100;
+}
+
+.bottom-box .close {
+	float: right;
+	margin: 10px;
+}
+
+
+/* Csv form */
+
+.form-container .tip {
+	padding-left: 5px;
+	color: #555;
+	font-style: italic;
+	margin-left: 110px;
+	opacity: 0;
+}
+
+
+.form-container fieldset {
+	border: none;
+}
+
+/* Form */
+.form-container {
+    margin-left:auto;
+    margin-right:auto;
+
+    max-width: 500px;
+    background: #e8edff;
+    padding: 20px 20px 20px 20px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #666;
+}
+.form-container h1 {
+    padding: 10px 10px 10px 20px;
+    display: block;
+    background: #C0E1FF;
+    border-bottom: 1px solid #B8DDFF;
+    margin: -20px -20px 15px;
+}
+.form-container h1>span {
+    display: block;
+    font-size: 11px;
+}
+
+.form-container label>span {
+    float: left;
+    margin-top: 10px;
+    color: #5E5E5E;
+}
+.form-container label {
+    display: block;
+    margin: 0px 0px 5px;
+}
+.form-container label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.form-container textarea{
+	border-radius: 5px;
+    height:100px;
+    padding: 5px 0px 0px 5px;
+    width: 70%;
+}
+
+.form-container .button{
+    padding: 10px 30px 10px 30px;
+    background: #66C1E4;
+    border: none;
+    float: right;
+    color: #FFF;
+    box-shadow: 1px 1px 1px #4C6E91;
+    -webkit-box-shadow: 1px 1px 1px #4C6E91;
+    -moz-box-shadow: 1px 1px 1px #4C6E91;
+    text-shadow: 1px 1px 1px #5079A3;
+    
+}
+.form-container .button:hover{
+    background: #3EB1DD;
+}
+
+
+
+/* Table */
+.table-container {
+	margin: 20px;
+}
+.table-container table {
+	border-collapse: collapse;
+	width: 100%;
+}
+.table-container .rounded-corner-table th {
+	background: #b9c9fe;
+	color: #039;
+	padding: 5px;
+}
+.table-container .rounded-corner-table th:first-child {
+	border-radius: 5px 0 0 0;
+}
+.table-container .rounded-corner-table th:last-child {
+	border-radius: 0 5px 0 0;
+}
+
+.table-container .rounded-corner-table td {
+	background: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+	padding: 8px;
+}
+.table-container .rounded-corner-table td.no-results {
+	text-align: center;
+}
+
+.table-container .rounded-corner-table tbody tr:hover td {
+  background: #d0dafd;
+}
+
+.table-container .rounded-corner-table tfoot td{
+	border-top: none;
+	border-radius: 0 0 5px 5px;
+}

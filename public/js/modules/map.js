@@ -40,12 +40,37 @@
 		}
 
 		/**
+		* Function that resize map
+		**/
+		function resizeMap() {
+			gmaps.event.trigger(map, 'resize');
+		}
+
+		/**
+		* Callback for map collapsing
+		**/
+		function collapseMap() {
+			$('.map-container').addClass('collapsed');
+			resizeMap();
+		}
+
+		/**
+		* Callback for map expanding
+		**/
+		function expandMap() {
+			$('.map-container').removeClass('collapsed');
+			resizeMap();
+		}
+
+		/**
 		* Function that start listening events for the module
 		**/
 		function bindEvents() {
 			eManager.on('addedFounders', function(data) {
 				addMapMarkers(data);
 			});
+			eManager.on('showManagementBox', collapseMap);
+			eManager.on('closeManagementBox', expandMap);
 		}
 
 		/**
