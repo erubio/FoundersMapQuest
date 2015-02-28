@@ -4,7 +4,7 @@
 	// Browser csv parser plugin
 
 	// original source http://jsfiddle.net/sturtevant/AZFvQ/
-	define(function() {
+	define(['plugins/events-manager'],function(eManager) {
 
 		/**
 		* Function that converts to camel case a string
@@ -75,17 +75,23 @@
 		* @return {Object} -> converted object
 		**/
 		function csv2Obj(csv) {
-			var array = CSVToArray(csv);
-			var objArray = [];
-			for (var i = 1; i < array.length; i++) {
-				objArray[i - 1] = {};
-				for (var k = 0; k < array[0].length && k < array[i].length; k++) {
-					var key = camelize(array[0][k]);
-					objArray[i - 1][key] = array[i][k]
+			try {
+				if(csv[csv.length-1] === '\n') {
+					csv = csv.substring(0,csv.length-2);
 				}
+				var array = CSVToArray(csv);
+				var objArray = [];
+				for (var i = 1; i < array.length; i++) {
+					objArray[i - 1] = {};
+					for (var k = 0; k < array[0].length && k < array[i].length; k++) {
+						var key = camelize(array[0][k]);
+						objArray[i - 1][key] = array[i][k];
+					}
+				}
+		    	return objArray;
+			} catch(e) {
+				eManager.trigger('csvParseError');
 			}
-
-		    return objArray;
 		}
 
 		return {
