@@ -3,8 +3,8 @@
 {< mainContent}
 	<nav id="nav-main">
 		<ul>
-			<li class="_showTable">TABLE</li>
-			<li class="_showForm">+++</li>
+			<li class="_showTable"><i class="icon icon-table"></i></li>
+			<li class="_showForm"><i class="icon icon icon-add"></i></li>
 		</ul>
 	</nav>
 	<section class="map-container">
@@ -12,7 +12,7 @@
 	</section>
 
 	<section id="management-box" class="bottom-box">
-		<div class="_close close">X</div>
+		<div class="_close close"><i class="icon icon icon-close"></i></div>
 		<div class="_box-content"></div>
 	</section>
 {/ mainContent}

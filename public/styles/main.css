@@ -38,14 +38,34 @@ body {
 /* Nav */
 #nav-main {
 	position: fixed;
-	top: 0px;
-	right: 150px;
+	top: -7px;
+	right: 90px;
 	z-index: 100;
 }
 
 #nav-main ul li{
 	display: inline;
 	margin: 0 5px 0 0;
+}
+/* Icons */
+.icon {
+	height: 22px;
+	width: 22px;
+	float: left;
+	margin-right: 5px;
+}
+
+.icon.icon-table {
+	background: url("../img/table-ico.png");
+}
+.icon.icon-add {
+	background: url("../img/add-ico.png");
+}
+
+.icon.icon-close {
+	height: 16px;
+	width: 16px;
+	background: url("../img/close-ico.png");
 }
 
 /* management box */
