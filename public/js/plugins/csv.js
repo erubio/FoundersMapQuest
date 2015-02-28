@@ -2,6 +2,8 @@
 	'use strict';
 
 	// Browser csv parser plugin
+
+	// original source http://jsfiddle.net/sturtevant/AZFvQ/
 	define(function() {
 
 		/**
