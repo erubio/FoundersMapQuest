@@ -198,10 +198,25 @@ body {
 }
 
 .table-container .rounded-corner-table tbody tr:hover td {
-  background: #d0dafd;
+	background: #d0dafd;
 }
 
 .table-container .rounded-corner-table tfoot td{
 	border-top: none;
 	border-radius: 0 0 5px 5px;
+}
+
+.table-container .rounded-corner-table .sorter {
+	height: 10px;
+	width: 10px;
+	display: inline-block;
+	background: url("../img/sort.svg");	
+	background-size: 10px 10px;	
+}
+.table-container .rounded-corner-table .headerSortUp .sorter {
+	height: 5px;	
+}
+.table-container .rounded-corner-table .headerSortDown .sorter {
+	height: 5px;
+	background-position-y: 5px;
 }

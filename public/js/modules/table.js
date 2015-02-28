@@ -1,8 +1,9 @@
 (function() {
 	'use strict';
 
-	define(['jquery','plugins/templates', 'plugins/events-manager', 'plugins/popup'], function($, templates, eManager, popup) {
-		var $table, tableData = null;
+	define(['jquery','plugins/templates', 'plugins/events-manager', 'plugins/jquery.tablesorter'], function($, templates, eManager, tableSorter) {
+		var $table,
+			tableData = null;
 
 		/**
 		* Function that add dom events to table
@@ -18,7 +19,8 @@
 		* Function that configure table sorter
 		**/
 		function configureSortTable() {
-
+			$table = $('.rounded-corner-table');
+			$table.tablesorter();
 		}
 
 		/**
@@ -33,6 +35,7 @@
 			templates.render('table-content', tmplData, function(html) {
 				var $boxContent = $('#management-box ._box-content');
 				$boxContent.append(html);
+				configureSortTable();
 			});
 			eManager.trigger('showManagementBox');
 		}
@@ -58,9 +61,7 @@
 		* Function that init table module
 		**/
 		function init() {
-			$table = $('.rounded-corner-table');
 			bindEvents();
-			configureSortTable();
 			addDomEvents();
 			console.log('table module initialized!');
 		}

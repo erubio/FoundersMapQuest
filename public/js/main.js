@@ -8,6 +8,7 @@
 			jquery: '/vendor/jquery/dist/jquery',
 			handlebars: '/vendor/handlebars/handlebars',
 			async: '/vendor/requirejs-plugins/src/async'
+			
 		}
 	});
 	// Main initialization
