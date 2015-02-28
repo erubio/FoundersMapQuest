@@ -35,7 +35,9 @@
     'tests/client/spec/appContextSpec',
     'tests/client/spec/templatesSpec',
     'tests/client/spec/csvModuleSpec',
-    'tests/client/spec/tableModuleSpec'
+    'tests/client/spec/tableModuleSpec',
+    'tests/client/spec/navModuleSpec',
+    'tests/client/spec/mBoxSpec'
   ];
 
   // Load Jasmine - This will still create all of the normal Jasmine browser globals unless `boot.js` is re-written to use the
