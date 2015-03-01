@@ -21,6 +21,7 @@
 			template.render('popup', {content: tmpl}, function(html) {
 				$popup = $(html);
 				$body.append($popup);
+				$popup.find('.popupContent').css('max-height', $(document).height() - 30);
 				configClose();
 			});
 		}

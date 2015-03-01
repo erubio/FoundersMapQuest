@@ -1,4 +1,7 @@
 /* Reset */
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
 body {
 	margin:0;
 	overflow: hidden;
@@ -38,7 +41,7 @@ body {
 /* Nav */
 #nav-main {
 	position: fixed;
-	top: -7px;
+	top: 5px;
 	right: 90px;
 	z-index: 100;
 }
@@ -149,7 +152,7 @@ body {
     width: 70%;
 }
 
-.form-container .button{
+.button{
     padding: 10px 30px 10px 30px;
     background: #66C1E4;
     border: none;
@@ -245,6 +248,27 @@ body {
 	width: 20px;		
 }
 
+.configTable li {
+	width: 40%;
+	display: block;
+	float: left;
+	margin-left: 5%;
+}
+.configTable fieldset {
+	clear: both;
+}
+.configTable h4 {
+	margin-left: 20px;
+}
+.configTable p {
+	margin: 10px 15px;
+}
+.configTable .action {
+	margin: 10px;
+}
+
+
+
 /* Popup */
 
 .overlay {
@@ -261,11 +285,11 @@ body {
 	background-color: #fff;
 	border: 1px solid black;
 	border-radius: 10px;
-	margin: 0 33%;
+	margin: 0 25%;
 	min-height: 100px;
 	position: fixed;
-	top: 20%;
-	width: 33%;
+	top: 20px;
+	width: 50%;
 	padding: 20px;
 	background: white;
 	box-shadow: 0px 0px 20px rgba( 0, 0, 0, 0.6 );
@@ -277,6 +301,9 @@ body {
 	transform: scale( 0.8 );
 	z-index:200;
 
+}
+.popup .popupContent {
+	overflow: auto;	
 }
 
 .popup .close {

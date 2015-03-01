@@ -1,0 +1,42 @@
+<form class="configTable">
+	<fieldset>
+		<h2>Config Geoposition</h2>
+		<p>Select the fields on latitude and longitude are available</p>
+		<h4>Latitude</h4>
+		<ul>
+			{{#each prop}}
+				<li>
+					<input id="lat{{key}}" type="radio" class="_latitude" name="latitude" {{#isLatitude}} checked {{/isLatitude}} value="{{key}}">
+					<label for="lat{{key}}">{{name}}</label>
+				</li>
+			{{/each}}	
+		</ul>
+	</fieldset>
+	<fieldset>
+		<h4>Longitude</h4>
+		<ul>
+			{{#each prop}}
+				<li>
+					<input id="lng{{key}}" type="radio" class="_longitude" name="longitude" {{#isLongitude}} checked {{/isLongitude}}  value="{{key}}">
+					<label for="lng{{key}}">{{name}}</label>
+				</li>
+			{{/each}}	
+		</ul>
+	</fieldset>
+	<fieldset>
+		<h2>Config infowindow</h2>
+		<p class="infowindowText">Select the information you want to see in markers infowindow</p>
+		<ul>
+			{{#each prop}}
+				<li>
+					<input id="info{{key}}" type="checkbox" {{#isInfoWindow}} checked {{/isInfoWindow}} class="_infoW" value="{{key}}">
+					<label for="info{{key}}">{{name}}</label>
+				</li>
+			{{/each}}	
+		</ul>
+	</fieldset>
+	<fieldset class="action _close">
+		<a href="#" class="button">OK</a>
+	</fieldset>
+
+</form>

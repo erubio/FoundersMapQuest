@@ -41,7 +41,15 @@
 				opacity: 0,
 			}, 500);
 		}
-
+		/**
+		* Function that show error in case csv is not valid
+		**/
+		function showError() {
+			alert('Error parsing csv');
+		}
+		/**
+		* Function init form 
+		**/
 		function initForm() {
 			var $body = $('body'),
 				isProcessing = false;
@@ -87,6 +95,9 @@
 		function bindEvents() {
 			eManager.on('showForm', function() {
 				showForm();
+			});
+			eManager.on('csvParseError', function() {
+				showError();
 			});
 		}
 

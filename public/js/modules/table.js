@@ -1,9 +1,10 @@
 (function() {
 	'use strict';
 
-	define(['jquery','plugins/templates', 'plugins/events-manager', 'plugins/jquery.tablesorter', 'plugins/popup'], function($, templates, eManager, tableSorter, popup) {
+	define(['jquery','plugins/templates', 'plugins/events-manager', 'plugins/jquery.tablesorter', 'plugins/popup', 'plugins/config'], function($, templates, eManager, tableSorter, popup, conf) {
 		var $table,
-			tableData;
+			tableData,
+			tableConfig = conf.getConf();
 
 		
 		/**
@@ -22,10 +23,34 @@
 		}
 
 		/**
+		* Function that returns an array with table columns and their configuration
+		* @return {Array} Array with column configuration
+		**/
+		function getTableProp() {
+			var obj = tableData? tableData[0]:tableConfig.defaultRow,
+				properties = [], prop, key;
+			for(key in obj) {
+				prop = {
+					name: unCamelCase(key), 
+					key: key, 
+					isLatitude: tableConfig.isLatitude === key, 
+					isLongitude: tableConfig.isLongitude === key, 
+					isInfoWindow: tableConfig.infoWindow.indexOf(key) !== -1
+				};
+				properties.push(prop);	
+			}
+			return properties;
+		}
+
+		/**
 		* Function that show config popup
 		**/
 		function showTableConfig() {
-			popup.create();
+			var tableProp = getTableProp(); 
+			templates.render('table-config', {prop: tableProp}, function(html){ 
+				popup.create(html);
+			});
+			
 		}
 
 		/**
@@ -55,6 +80,31 @@
 			eManager.trigger('updateMapInfo', tableData);
 		}
 
+
+		/**
+		* Function that set configuration
+		* @param {Event} e -> Change event of the inputs
+		**/
+		function setConfiguration(e) {
+			var $target= $(e.target),
+				selectedInfos, values = [];
+			if($target.hasClass('_latitude')){
+				conf.setConf('isLatitude', $target.val());
+			} else if($target.hasClass('_longitude')) {
+				conf.setConf('isLongitude', $target.val());
+			} else {
+
+				selectedInfos = $target.closest('ul').find('input:checked');
+				selectedInfos.each(function(i, selected) {
+					values.push($(selected).val());
+				});
+				conf.setConf('infoWindow', values.join(','));
+			}
+			eManager.trigger('configChange');
+			eManager.trigger('updateMapInfo', tableData);
+
+		}
+
 		/**
 		* Function that add dom events to table
 		**/
@@ -65,6 +115,7 @@
 			});
 			$mBox.delegate('._openConfig', 'click', showTableConfig);
 			$mBox.delegate('._toggleVisibility', 'change', toggleVisibility);
+			$('body').delegate('._latitude, ._longitude, ._infoW', 'change', setConfiguration);
 		}
 
 		/**
