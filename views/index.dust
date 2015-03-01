@@ -3,8 +3,8 @@
 {< mainContent}
 	<nav id="nav-main">
 		<ul>
-			<li class="_showTable"><i class="icon icon-table"></i></li>
-			<li class="_showForm"><i class="icon icon icon-add"></i></li>
+			<li class="_showTable" title="Show table"><i class="icon icon-table"></i></li>
+			<li class="_showForm" title="Add new founder"><i class="icon icon icon-add"></i></li>
 		</ul>
 	</nav>
 	<section class="map-container">
