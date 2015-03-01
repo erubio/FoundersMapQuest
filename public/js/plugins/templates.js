@@ -36,11 +36,15 @@
 		/**
 		* Add handlebars helper for check if data is image
 		**/
-		HBS.registerHelper('checkImage', function(value) {
+		HBS.registerHelper('checkContent', function(value) {
 			
 			if(value.match(/\.(jpg|png|jpeg|bmp|svg|tiff|gif)$/)) {
 				return new HBS.SafeString(
 					'<a href="#" class="_imgView"><img src="' + value + '" width="60px"></a>'
+				);
+			} else if(value.match(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/)) {
+				return new HBS.SafeString(
+					'<a href="' + value + '" target="_blank">' + value + '</a>'
 				);
 			} else {
 				return value;

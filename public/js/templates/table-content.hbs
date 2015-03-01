@@ -2,6 +2,9 @@
 	<header>
 		<h2>Founders Table</h2>
 	</header>
+	<div class="config">
+		<i class="tools-icon _openConfig"></i>
+	</div>
 	<table class="rounded-corner-table">
 		<thead>
 			<tr>
@@ -16,12 +19,13 @@
 				<th>Home Page  <i class="sorter"></i></th>
 				<th>Garage <br/>Latitude  <i class="sorter"></i></th>
 				<th>Garage <br/>Longitude  <i class="sorter"></i></th>
+				<th>Show</th>
 			<tr>
 		</thead>
 		<tfoot>
 			{{#showTfoot}}
 			<tr>
-				<td colspan="11" class="no-results _addNew">
+				<td colspan="12" class="no-results _addNew">
 					There is no data to show, be the first adding your project! Click here to add it!
 				</td>
 			</tr>
@@ -30,17 +34,18 @@
 		<tbody>
 			{{#each rows}}
 				<tr>
-					<td class="">{{checkImage id}}</td>
-					<td class="">{{checkImage companyName}}</td>
-					<td class="">{{checkImage founder}}</td>
-					<td class="">{{checkImage city}}</td>
-					<td class="">{{checkImage country}}</td>
-					<td class="">{{checkImage postalCode}}</td>
-					<td class="">{{checkImage street}}</td>
-					<td class="">{{checkImage photo}}</td>
-					<td class=""><a href="{{homePage}}" target="_blank">{{homePage}}</a></td>
-					<td class="">{{garageLatitude}}</td>
-					<td class="">{{garageLongitude}}</td>
+					<td class="_id">{{checkContent id}}</td>
+					<td class="">{{checkContent companyName}}</td>
+					<td class="">{{checkContent founder}}</td>
+					<td class="">{{checkContent city}}</td>
+					<td class="">{{checkContent country}}</td>
+					<td class="">{{checkContent postalCode}}</td>
+					<td class="">{{checkContent street}}</td>
+					<td class="">{{checkContent photo}}</td>
+					<td class="">{{checkContent homePage}}</td>
+					<td class="">{{checkContent garageLatitude}}</td>
+					<td class="">{{checkContent garageLongitude}}</td>
+					<td class=""><input type="checkbox" checked class="_toggleVisibility"></td>
 				</tr>
 			{{/each}}
 		</tbody>
