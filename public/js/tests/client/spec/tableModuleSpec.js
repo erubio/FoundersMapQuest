@@ -47,7 +47,7 @@ define(['jquery', 'modules/table','tests-utils', 'plugins/events-manager'], func
 				setTimeout(function(){
 					var $tr = $('tbody tr');
 					expect($tr.length).toEqual(1);
-					expect($tr.find('td').length).toEqual(11);
+					expect($tr.find('td').length).toEqual(12);
 					done();
 				},200);
 	
@@ -56,8 +56,49 @@ define(['jquery', 'modules/table','tests-utils', 'plugins/events-manager'], func
 			setTimeout(function() {
 				eManager.trigger('showTable');
 			},10);
-			
+		});
 
+		it('Should trigger updateMapInfo once data is processed', function(done){
+			eManager.on('updateMapInfo', function(data) {
+				expect(true).toEqual(true);
+				done();	
+			});
+			eManager.trigger('addedFounders', obj);	
+		});
+
+		it('Should avoid add duplicated elements and show an alert', function(){
+			eManager.on('updateMapInfo', function(data) {
+				eManager.trigger('addedFounders', obj);	
+			});
+			var _alert = window.alert;
+			window.alert = function(text) {
+				expect(text).toEqual('Error: Ids should be different');
+				done();		
+			}
+			eManager.trigger('addedFounders', obj);	
+		});
+
+		it('Should trigger updateMapInfo when checkbox is clicked', function(done) {
+			eManager.on('showTable', function() {
+				setTimeout(function(){
+					eManager.on('updateMapInfo', function(data) {
+						expect(data[0].isHidden).toEqual(true);
+						done();
+					});
+
+					var $tr = $('tbody tr');
+					expect($tr.length).toEqual(1);
+					expect($tr.find('td').length).toEqual(12);
+					$tr.find('input[type=checkbox]').click();
+					
+				},200);
+	
+			});
+
+			eManager.trigger('addedFounders', obj);
+			setTimeout(function() {
+				eManager.trigger('showTable');
+			},10);	
 		});
 	});
 });

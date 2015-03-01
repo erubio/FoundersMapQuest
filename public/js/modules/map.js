@@ -21,22 +21,38 @@
 		* @param {Object} data -> markers data
 		**/
 		function addMapMarkers(data) {
-			var i, l, latlng, title, currentFounder,
+			var i, l, latlng, title, currentFounder, marker,
 				bounds = new gmaps.LatLngBounds();
 			
 			for(i=0,l=data.length; i<l; i++) {
 				currentFounder = data[i];
-				latlng = new gmaps.LatLng(currentFounder.garageLatitude, currentFounder.garageLongitude);
-				title = currentFounder.companyName;
-				markers.push(new gmaps.Marker({
-					position: latlng,
-					map: map,
-					title: title
-				}));
-				bounds.extend(latlng);
+				if(!currentFounder.isHidden) {
+					latlng = new gmaps.LatLng(currentFounder.garageLatitude, currentFounder.garageLongitude);
+					title = currentFounder.companyName;
+					marker = new gmaps.Marker({
+						position: latlng,
+						map: map,
+						title: title
+					});
+					marker.founderData =  currentFounder;
+					markers.push(marker);
+					bounds.extend(latlng);	
+				}
 			}
 			map.fitBounds(bounds);
 			
+		}
+
+		/**
+		* Function that remove all markers
+		**/
+		function removeMarkers() {
+			if(markers.length) {
+				$(markers).each(function(idx, marker){
+					marker.setMap(null);
+				});
+				markers = [];
+			}
 		}
 
 		/**
@@ -66,9 +82,11 @@
 		* Function that start listening events for the module
 		**/
 		function bindEvents() {
-			eManager.on('addedFounders', function(data) {
+			eManager.on('updateMapInfo', function(data) {
+				removeMarkers();
 				addMapMarkers(data);
 			});
+
 			eManager.on('showManagementBox', collapseMap);
 			eManager.on('closeManagementBox', expandMap);
 		}
