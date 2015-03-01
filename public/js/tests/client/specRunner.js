@@ -38,7 +38,8 @@
     'tests/client/spec/tableModuleSpec',
     'tests/client/spec/navModuleSpec',
     'tests/client/spec/mBoxSpec',
-    'tests/client/spec/popupSpec'
+    'tests/client/spec/popupSpec',
+    'tests/client/spec/configSpec'
   ];
 
   // Load Jasmine - This will still create all of the normal Jasmine browser globals unless `boot.js` is re-written to use the
